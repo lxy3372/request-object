@@ -1,0 +1,25 @@
+{
+  "name": "riky/laravel-request",
+  "description": "inject request object for laravel",
+  "version":"0.1.0",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "riky",
+      "email": "lxy3372@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "symfony/http-foundation": "~3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Riky\\Requests\\": "src/Requests/",
+      "Riky\\Utils\\": "src/Utils/",
+      "Riky\\Exceptions\\": "src/Exceptions/"
+    }
+  },
+  "minimum-stability": "dev"
+}
