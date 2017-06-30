@@ -1,2 +1,2 @@
-# laravel-request
-auto inject request object for laravel
+# request-object
+auto inject request object for Symfony request

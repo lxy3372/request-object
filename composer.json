@@ -1,6 +1,6 @@
 {
-  "name": "riky/laravel-request",
-  "description": "inject request object for laravel",
+  "name": "riky/request-object",
+  "description": "inject request object for Symfony request",
   "version":"0.1.0",
   "type": "library",
   "license": "MIT",
