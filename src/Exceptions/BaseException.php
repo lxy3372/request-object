@@ -20,8 +20,8 @@ class BaseException extends Exception
      */
     public $data;
 
-    public function __construct($code, array $value = [], array $data = []) {
-        $notice = trans($this->lang_filename.$code, $value);
+    public function __construct($code, $notice, array $data = []) {
+        //$notice = trans($this->lang_filename.$code, $value);
         $this->data = $data;
         parent::__construct($notice, $code);
     }

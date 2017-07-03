@@ -18,7 +18,8 @@ Class BaseRo
     /**
      * eg: 平台
      *
-     * @var int|1,3
+     * @var
+     * @int|1,3
      */
     public $plat_form=1;
 
@@ -40,20 +41,15 @@ Class BaseRo
 	 */
     function __construct($request = array())
     {
-	    //support for laravel
-        if (function_exists('app') && app()->request) {
-	        $this->request_handler = app()->request;
-            $params = app()->request->all();
-        } else {
-	        $request_obj = new SymfonyRequest();
-	        $request_handler = $request_obj->createFromGlobals();
-	        $params = array_merge($request_handler->query->all(), $request_handler->request->all());
-        }
+	    $request_obj = new SymfonyRequest();
+	    $request_handler = $request_obj->createFromGlobals();
+	    $params = array_merge($request_handler->query->all(), $request_handler->request->all());
 	    $request = array_merge($params, $request);
         $this->inject($request);
         $this->before();
         $this->checkAttr();
         $this->after();
+	    $this->request_handler = $request_handler;
     }
 
     /**
@@ -126,7 +122,7 @@ Class BaseRo
                     if (is_string($param)) {
                         $args = explode(',', $param);
                         array_unshift($args, $name, $this->$name);
-                        call_user_func_array([VerifyRoUtil::class, $method], $args);
+	                    VerifyRoUtil::$method(...$args);
                     } else {
                         VerifyRoUtil::$method($name, $this->$name);
                     }
@@ -138,6 +134,11 @@ Class BaseRo
         }
     }
 
+	/**
+	 * @param RoException $e
+	 *
+	 * @throws RoException
+	 */
     protected function handleException(RoException $e)
     {
         throw $e;
@@ -150,5 +151,15 @@ Class BaseRo
     {
 
     }
+
+	/**
+	 * get Symfony request handler
+	 * 
+	 * @return \Symfony\Component\HttpFoundation\Request
+	 */
+	public function getRequestHandler()
+	{
+		$this->request_handler;	
+	}
 
 }
