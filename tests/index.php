@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Ricky.liu@huolala.cn
+ * User: me@rikyliu.com
  * Date: 2017-06-26
  * Time: 13:49
  */
